@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { ModeToggle } from "./ThemeTogol";
 
 const navItems = [
   { label: "Home", href: "#" },
@@ -18,17 +19,17 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/50"
+      className=" sticky top-0 left-0 right-0 z-50 glass-card border-b border-border/50"
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <GraduationCap className="h-7 w-7 text-primary" />
           <span className="text-lg font-bold tracking-tight text-foreground">
-            Skill<span className="text-gradient-emerald">Bridge</span>
+            Edu<span className="text-gradient-emerald text-destructive">Zone</span>
           </span>
         </a>
-
         <div className="hidden md:flex items-center gap-8">
+            <ModeToggle/>
           {navItems.map((item) => (
             <a
               key={item.label}
