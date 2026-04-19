@@ -1,11 +1,13 @@
 "use client"
 import { motion, AnimatePresence } from "framer-motion";
 import { GraduationCap, Menu, X } from "lucide-react";
+import logo from "../../../public/logo.png";
 import { useState } from "react";
 import { ModeToggle } from "./ThemeTogol";
+import Image from "next/image";
 
 const navItems = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "Subjects", href: "#subjects" },
   { label: "Tutors", href: "#tutors" },
   { label: "How It Works", href: "#how-it-works" },
@@ -23,13 +25,13 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <GraduationCap className="h-7 w-7 text-primary" />
+          <Image alt="EduZone" src={logo}></Image>
           <span className="text-lg font-bold tracking-tight text-foreground">
             Edu<span className="text-gradient-emerald text-destructive">Zone</span>
           </span>
         </a>
         <div className="hidden md:flex items-center gap-8">
-            <ModeToggle/>
+          {/* <ModeToggle /> */}
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -40,10 +42,10 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="#"
+            href="/login"
             className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold glow-button"
           >
-            Join Now
+            Login Now
           </a>
         </div>
 
@@ -75,10 +77,10 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="#"
+                href="/login"
                 className="mt-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold glow-button text-center"
               >
-                Join Now
+                Login
               </a>
             </div>
           </motion.div>
