@@ -10,7 +10,9 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Subjects", href: "#subjects" },
   { label: "Tutors", href: "#tutors" },
+  { label: "Dashboard", href: "/user-dashboard" },
   { label: "How It Works", href: "#how-it-works" },
+
 ];
 
 const Navbar = () => {
