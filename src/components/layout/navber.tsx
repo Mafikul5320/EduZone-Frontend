@@ -5,13 +5,14 @@ import logo from "../../../public/logo.png";
 import { useState } from "react";
 import { ModeToggle } from "./ThemeTogol";
 import Image from "next/image";
+import Link from "next/link";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Subjects", href: "#subjects" },
   { label: "Tutors", href: "#tutors" },
   { label: "Dashboard", href: "/user-dashboard" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "Login", href: "/login" },
 
 ];
 
@@ -23,7 +24,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className=" sticky top-0 left-0 right-0 z-50 glass-card border-b border-border/50"
+      className=" sticky bg-white/80 backdrop-blur-md top-0 py-2 left-0 right-0 z-50 glass-card border-b border-border/50"
     >
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
@@ -43,12 +44,9 @@ const Navbar = () => {
               {item.label}
             </a>
           ))}
-          <a
-            href="/login"
-            className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold glow-button"
-          >
-            Login Now
-          </a>
+          <Link href={"/signup"}><button className="bg-[#1A237E] text-white px-6 py-2 rounded-full hover:bg-[#1A237E]/90 transition-all active:scale-95">
+            Register Now
+          </button></Link>
         </div>
 
         <button
