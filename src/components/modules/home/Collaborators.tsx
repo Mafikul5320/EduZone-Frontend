@@ -1,6 +1,5 @@
 "use client";
 
-// ✅ Install: npm install embla-carousel-react embla-carousel-autoplay
 
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
