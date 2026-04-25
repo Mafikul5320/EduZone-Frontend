@@ -27,7 +27,8 @@ function LoginFrom() {
             try {
                 const { data, error } = await authClient.signIn.email(value);
                 if (data) {
-                    toast.success("Login sucessfull", { id: tostId })
+                    toast.success("Login sucessfull", { id: tostId });
+                     window.location.href = "/";
                 };
                 if (error) {
                     toast.error(error.message, { id: tostId })
