@@ -25,7 +25,7 @@ export default function CollaboratorsSection() {
         [Autoplay({ delay: 1400, stopOnInteraction: false, playOnInit: true, })]
     );
 
-    // Duplicate for seamless infinite feel
+
     const items = [...collaborators];
 
     return (
