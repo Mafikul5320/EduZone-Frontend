@@ -1,241 +1,146 @@
-import { Search, Filter, Star, Clock, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Search, Filter, Star, BookOpen, DollarSign, Tag } from "lucide-react";
+import GlassCard from "@/components/ui/GlassCard";
+import { TutorService } from "@/service/tutor.service";
+import { CategoryService } from "@/service/category.service";
 import Link from "next/link";
 import Image from "next/image";
 
-// Mock data - Replace with API call
-const tutors = [
-  {
-    id: "1",
-    name: "Dr. Sarah Johnson",
-    image: "/placeholder-tutor.jpg",
-    expertise: ["Mathematics", "Physics"],
-    hourlyRate: 50,
-    rating: 4.9,
-    totalReviews: 127,
-    totalSessions: 450,
-    bio: "PhD in Mathematics with 10+ years of teaching experience"
-  },
-  {
-    id: "2",
-    name: "Prof. Michael Chen",
-    image: "/placeholder-tutor.jpg",
-    expertise: ["Computer Science", "Programming"],
-    hourlyRate: 60,
-    rating: 4.8,
-    totalReviews: 98,
-    totalSessions: 320,
-    bio: "Senior Software Engineer and CS Professor"
-  },
-  {
-    id: "3",
-    name: "Emily Rodriguez",
-    image: "/placeholder-tutor.jpg",
-    expertise: ["English", "Literature"],
-    hourlyRate: 40,
-    rating: 5.0,
-    totalReviews: 156,
-    totalSessions: 580,
-    bio: "Master's in English Literature, passionate educator"
-  },
-];
+async function TutorsPage({ searchParams }: { searchParams: { categoryId?: string, maxPrice?: string } }) {
+  const tutorsResponse = await TutorService.getAllTutors();
+  const categoriesResponse = await CategoryService.getAllCategories();
+  
+  const tutors = tutorsResponse?.data || [];
+  const categories = categoriesResponse?.data || [];
 
-const categories = [
-  "All Subjects",
-  "Mathematics",
-  "Science",
-  "English",
-  "Computer Science",
-  "Languages",
-  "Arts",
-];
-
-export default function TutorsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Find Your Perfect Tutor
-            </h1>
-            <p className="text-xl mb-8 text-blue-100">
-              Connect with expert tutors and start learning today
-            </p>
-
-            {/* Search Bar */}
-            <div className="bg-white rounded-lg shadow-xl p-2 flex gap-2">
-              <div className="flex-1 flex items-center gap-2 px-3">
-                <Search className="text-gray-400" size={20} />
-                <Input
-                  placeholder="Search by subject, tutor name..."
-                  className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-              </div>
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Search
-              </Button>
-            </div>
+    <div className="min-h-screen bg-background pb-20">
+      {/* Search Header */}
+      <div className="relative h-[400px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 to-background z-0" />
+        <div className="relative z-10 text-center space-y-6 px-4 max-w-4xl">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent">
+            Unlock Your Potential
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Find the perfect mentor from our curated list of expert tutors and start your journey today.
+          </p>
+          
+          <div className="relative max-w-2xl mx-auto">
+            <input
+              type="text"
+              placeholder="Search by subject or tutor name..."
+              className="w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 pl-14 outline-none focus:border-primary/50 transition-all text-lg shadow-2xl"
+            />
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground" size={24} />
           </div>
         </div>
-      </section>
+      </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters Sidebar */}
-          <aside className="lg:w-64 space-y-6">
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-                  <Filter size={20} />
-                  Filters
-                </h3>
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-8 -mt-10 relative z-20">
+        {/* Filters */}
+        <aside className="lg:col-span-1 space-y-6">
+          <GlassCard variant="premium" className="sticky top-24">
+            <h3 className="text-lg font-bold flex items-center gap-2 mb-6">
+              <Filter size={20} className="text-primary" />
+              Advanced Filters
+            </h3>
 
-                {/* Categories */}
-                <div className="space-y-3">
-                  <h4 className="font-medium text-sm text-gray-700">Categories</h4>
-                  <div className="space-y-2">
-                    {categories.map((category) => (
-                      <label key={category} className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" className="rounded" />
-                        <span className="text-sm">{category}</span>
-                      </label>
-                    ))}
-                  </div>
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Categories</p>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((cat: any) => (
+                    <button key={cat.id} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-primary hover:text-primary-foreground transition-all">
+                      {cat.name}
+                    </button>
+                  ))}
                 </div>
+              </div>
 
-                {/* Price Range */}
-                <div className="mt-6 space-y-3">
-                  <h4 className="font-medium text-sm text-gray-700">Price Range</h4>
-                  <div className="space-y-2">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">Under $30/hr</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">$30 - $50/hr</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">$50 - $100/hr</span>
-                    </label>
-                    <label className="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" className="rounded" />
-                      <span className="text-sm">$100+/hr</span>
-                    </label>
-                  </div>
+              <div className="space-y-3">
+                <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Price Range</p>
+                <input type="range" className="w-full accent-primary" min="0" max="200" />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>$0</span>
+                  <span>$200+</span>
                 </div>
+              </div>
 
-                {/* Rating */}
-                <div className="mt-6 space-y-3">
-                  <h4 className="font-medium text-sm text-gray-700">Rating</h4>
-                  <div className="space-y-2">
-                    {[5, 4, 3].map((rating) => (
-                      <label key={rating} className="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" className="rounded" />
-                        <div className="flex items-center gap-1">
-                          <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                          <span className="text-sm">{rating}+ Stars</span>
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </aside>
+              <button className="w-full bg-white text-black font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform shadow-xl">
+                Apply Filters
+              </button>
+            </div>
+          </GlassCard>
+        </aside>
 
-          {/* Tutors Grid */}
-          <div className="flex-1">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Available Tutors <span className="text-gray-500 text-lg">({tutors.length})</span>
-              </h2>
-              <select className="border rounded-lg px-4 py-2 text-sm">
-                <option>Sort by: Recommended</option>
+        {/* Tutors Grid */}
+        <main className="lg:col-span-3 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold italic">{tutors.length} Tutors Available</h2>
+            <div className="flex gap-2">
+              <span className="text-sm text-muted-foreground italic">Sort by:</span>
+              <select className="bg-transparent font-bold outline-none italic">
                 <option>Highest Rated</option>
-                <option>Most Reviews</option>
                 <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
               </select>
             </div>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {tutors.map((tutor) => (
-                <Card key={tutor.id} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex gap-4">
-                      {/* Tutor Image */}
-                      <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-blue-400 to-indigo-600 flex-shrink-0">
-                        <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
-                          {tutor.name.charAt(0)}
-                        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {tutors.map((tutor: any) => (
+              <GlassCard key={tutor.id} className="group hover:scale-[1.02] transition-all">
+                <div className="flex gap-4">
+                  <div className="relative w-24 h-24 rounded-2xl overflow-hidden border border-white/20 shrink-0">
+                    {tutor.image ? (
+                      <Image src={tutor.image} alt={tutor.name} fill className="object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-white/10 flex items-center justify-center">
+                        <Star size={32} className="text-muted-foreground" />
                       </div>
-
-                      {/* Tutor Info */}
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-lg mb-1">{tutor.name}</h3>
-                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">{tutor.bio}</p>
-
-                        {/* Expertise Tags */}
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {tutor.expertise.map((skill) => (
-                            <Badge key={skill} variant="secondary" className="text-xs">
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-
-                        {/* Stats */}
-                        <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
-                          <div className="flex items-center gap-1">
-                            <Star size={16} className="fill-yellow-400 text-yellow-400" />
-                            <span className="font-medium">{tutor.rating}</span>
-                            <span>({tutor.totalReviews})</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <BookOpen size={16} />
-                            <span>{tutor.totalSessions} sessions</span>
-                          </div>
-                        </div>
-
-                        {/* Price & Action */}
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <span className="text-2xl font-bold text-blue-600">
-                              ${tutor.hourlyRate}
-                            </span>
-                            <span className="text-gray-600 text-sm">/hour</span>
-                          </div>
-                          <Link href={`/tutors/${tutor.id}`}>
-                            <Button className="bg-blue-600 hover:bg-blue-700">
-                              View Profile
-                            </Button>
-                          </Link>
-                        </div>
+                    )}
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-xl font-bold">{tutor.name}</h3>
+                      <div className="flex items-center gap-1 text-amber-400">
+                        <Star size={14} fill="currentColor" />
+                        <span className="text-sm font-bold">4.9</span>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Pagination */}
-            <div className="mt-8 flex justify-center gap-2">
-              <Button variant="outline" disabled>Previous</Button>
-              <Button variant="outline" className="bg-blue-600 text-white">1</Button>
-              <Button variant="outline">2</Button>
-              <Button variant="outline">3</Button>
-              <Button variant="outline">Next</Button>
-            </div>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{tutor.bio}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {tutor.subjects?.slice(0, 3).map((sub: string) => (
+                        <span key={sub} className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-tighter">
+                          {sub}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+                  <div>
+                    <span className="text-2xl font-bold">${tutor.pricePerHour}</span>
+                    <span className="text-xs text-muted-foreground">/hr</span>
+                  </div>
+                  <Link href={`/tutors/${tutor.id}`}>
+                    <button className="px-6 py-2 rounded-xl bg-white text-black font-bold text-sm hover:bg-white/90 transition-all shadow-lg">
+                      View Profile
+                    </button>
+                  </Link>
+                </div>
+              </GlassCard>
+            ))}
+            {tutors.length === 0 && (
+              <div className="col-span-full py-20 text-center">
+                <p className="text-muted-foreground">No tutors found matching your criteria.</p>
+              </div>
+            )}
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );
 }
+
+export default TutorsPage;

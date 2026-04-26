@@ -53,12 +53,12 @@ export default async function Page({
                     />
                     <Breadcrumb>
                         <BreadcrumbList>
-                            <BreadcrumbItem className="hidden md:block">
-                                <BreadcrumbLink href="#">Build Your Application</BreadcrumbLink>
-                            </BreadcrumbItem>
-                            <BreadcrumbSeparator className="hidden md:block" />
                             <BreadcrumbItem>
-                                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                                <BreadcrumbLink href="/" className="italic">EduZone</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem>
+                                <BreadcrumbPage className="font-bold italic">Dashboard</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>

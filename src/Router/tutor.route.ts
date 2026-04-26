@@ -2,7 +2,15 @@ import { Route } from "@/types/routeType";
 
 export const TutorRoute: Route[] = [
     {
-        title: "Tutor analytics",
-        url: "/admin-analytics",
+        title: "Overview",
+        url: "/tutor-dashboard",
+    },
+    {
+        title: "Tutor Profile",
+        url: "/tutor-dashboard/profile",
+    },
+    {
+        title: "Availability",
+        url: "/tutor-dashboard/availability",
     }
 ]

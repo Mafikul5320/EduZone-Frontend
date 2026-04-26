@@ -9,7 +9,7 @@ const testimonials = [
     name: "Marcus Williams",
     role: "CS Student, MIT",
     avatar: "Marcus",
-    text: "SkillBridge transformed my understanding of machine learning. My tutor's explanations were crystal clear and the progress tracking kept me motivated.",
+    text: "EduZone transformed my understanding of machine learning. My tutor's explanations were crystal clear and the progress tracking kept me motivated.",
     stars: 5,
     subject: "Machine Learning",
     float: "animate-float",
@@ -85,8 +85,8 @@ export function TestimonialsSection() {
             Real Results,{" "}
             <span className="text-gradient-emerald">Real Stories</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Thousands of students have transformed their learning journey with SkillBridge.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto italic">
+            Thousands of students have transformed their learning journey with EduZone.
           </p>
         </motion.div>
 
