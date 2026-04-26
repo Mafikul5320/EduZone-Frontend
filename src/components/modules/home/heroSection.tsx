@@ -1,15 +1,32 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { getAllTutorProfilesAction } from "@/action/tutor.action";
+
 
 const Hero = () => {
+  const [allTutors, setAllTutors] = useState(null);
+
+  useEffect(() => {
+    const fetchTutors = async () => {
+      try {
+        const data = await getAllTutorProfilesAction();
+        setAllTutors(data);
+      } catch (error) {
+        console.error("Error fetching tutors:", error);
+      }
+    };
+
+    fetchTutors();
+  }, []);
+
+  console.log(allTutors?.data);
+
   return (
     <section className="bg-[#F4F7FC] text-gray-800">
-
       {/* Hero Section Content */}
       <div className="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
-        
         {/* Left Side: Text and Search */}
         <div className="md:w-1/2 flex flex-col gap-6 animate-in fade-in slide-in-from-left duration-700">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A237E] leading-tight">
@@ -18,7 +35,7 @@ const Hero = () => {
           <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
             Connect directly with experienced and verified tutors. Start your learning journey today with personalized guidance.
           </p>
-          
+
           {/* Search Bar */}
           <div className="bg-white p-2 rounded-full shadow-lg flex items-center border border-gray-100 mt-6 max-w-lg group transition-all focus-within:ring-2 focus-within:ring-[#009688]/20">
             <span className="px-4 text-gray-400">
@@ -26,9 +43,9 @@ const Hero = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </span>
-            <input 
-              type="text" 
-              placeholder="Search by subject, area or course..." 
+            <input
+              type="text"
+              placeholder="Search by subject, area or course..."
               className="flex-grow p-3 text-lg focus:outline-none bg-transparent"
             />
             <button className="bg-[#009688] text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-[#009688]/90 transition-all">
@@ -51,15 +68,15 @@ const Hero = () => {
           <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px]">
             {/* Main Tutor Image */}
             <div className="relative w-full h-full overflow-hidden rounded-[30px] border-4 border-white shadow-[0_0_50px_rgba(0,150,136,0.3)]">
-              <Image 
-                src="/tutor-image.jpg" // Put your image in public/tutor-image.jpg
+              <Image
+                src="https://i.ibb.co.com/k6cK4DMT/home-tutor-m-jpg.webp" // Put your image in public/tutor-image.jpg
                 alt="Experienced Tutor"
                 fill
                 className="object-cover"
                 priority
               />
             </div>
-            
+
             {/* Floating Glass Card 1 */}
             <div className="absolute -top-10 -left-10 bg-white/70 backdrop-blur-md p-4 rounded-[20px] border border-white/30 shadow-xl flex items-center gap-4 animate-bounce duration-[3000ms]">
               <span className="text-3xl">👨‍🏫</span>
@@ -94,8 +111,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-
     </section>
   );
 };

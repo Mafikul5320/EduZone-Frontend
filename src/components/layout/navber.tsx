@@ -11,7 +11,7 @@ import { authClient } from "@/lib/auth-client";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Subjects", href: "#subjects" },
-  { label: "Tutors", href: "#tutors" },
+  { label: "Tutors", href: "/tutors" },
 ];
 
 const getDashboardLink = (role: string | undefined) => {

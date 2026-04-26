@@ -6,6 +6,7 @@ import Image from "next/image";
 async function AdminBookingsPage() {
   const bookingsResponse = await BookingService.getAllBookings();
   const bookings = bookingsResponse?.data || [];
+  console.log(bookings)
 
   return (
     <div className="p-6 space-y-8 max-w-7xl mx-auto">
@@ -59,7 +60,7 @@ async function AdminBookingsPage() {
                          </div>
                          <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
                            <Clock size={10} />
-                           {booking.slot?.startTime} - {booking.slot?.endTime}
+                           {booking.slot}
                          </div>
                        </div>
                     </td>

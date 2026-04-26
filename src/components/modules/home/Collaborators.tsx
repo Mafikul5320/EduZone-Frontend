@@ -5,14 +5,23 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import corser from "../../../../public/courser.png";
+import corser1 from "../../../../public/Collaborators1.png";
+import corser2 from "../../../../public/Collaborators2.png";
+import corser3 from "../../../../public/Collaborators3.png";
+import corser4 from "../../../../public/Collaborators4.png";
+import corser5 from "../../../../public/Collaborators5.png";
 
 const collaborators = [
     { id: 1, name: "Coursera", logo: corser },
-    // { id: 2, name: "Bondi Pathshala", logo: "/logos/bondi-pathshala.png" },
-    // { id: 3, name: "Education Platform", logo: "/logos/education-platform.png" },
-    // { id: 4, name: "Courses Online", logo: "/logos/courses-online.png" },
-    // { id: 5, name: "Udemy", logo: "/logos/udemy.png" },
-    // { id: 6, name: "Khan Academy", logo: "/logos/khan-academy.png" },
+    { id: 2, name: "Coursera", logo: corser1 },
+    { id: 3, name: "Coursera", logo: corser2 },
+    { id: 4, name: "Coursera", logo: corser3 },
+    { id: 5, name: "Coursera", logo: corser4 },
+    { id: 6, name: "Coursera", logo: corser5 },
+    { id: 7, name: "Coursera", logo: corser },
+    { id: 8, name: "Coursera", logo: corser3 },
+    { id: 9, name: "Coursera", logo: corser4 },
+
 ];
 
 export default function CollaboratorsSection() {
@@ -54,7 +63,7 @@ export default function CollaboratorsSection() {
                         {items.map((collab, index) => (
                             <div
                                 key={`${collab.id}-${index}`}
-                                className="flex-shrink-0 flex items-center justify-center w-[220px] h-[100px] bg-[#f0f2ee] rounded-2xl px-6"
+                                className="flex-shrink-0 flex items-center justify-center w-[250px] h-[150px] bg-[#f0f2ee] rounded-2xl px-6 pr-5"
                             >
 
                                 <Image
@@ -62,7 +71,7 @@ export default function CollaboratorsSection() {
                                     alt={collab.name}
                                     width={160}
                                     height={60}
-                                    className="object-contain max-h-[60px]"
+                                    className="object-contain mx-w-[80px] "
                                 />
 
                             </div>

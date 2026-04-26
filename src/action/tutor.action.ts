@@ -47,3 +47,21 @@ export const getAllTutorsDashboard = async () => {
     return { success: false, message: "An error occurred while fetching tutors" };
   }
 };
+
+export const getTutorNamesAction = async () => {
+  try {
+    const res = await TutorService.getTutorNames();
+    return res;
+  } catch (error) {
+    return { success: false, message: "An error occurred while fetching tutor names" };
+  }
+};
+
+export const getAllTutorProfilesAction = async () => {
+  try {
+    const res = await TutorService.getTutorNames();
+    return res;
+  } catch (error) {
+    return { success: false, message: "An error occurred while fetching all tutor profiles" };
+  }
+};

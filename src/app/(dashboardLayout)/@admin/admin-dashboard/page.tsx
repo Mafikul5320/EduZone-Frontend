@@ -4,7 +4,7 @@ import { Users, Bookmark, Grid, TrendingUp, Calendar } from "lucide-react";
 
 async function AdminDashboard() {
   const stats = await AdminService.getDashboardStats();
-  
+
   // Mock data for fallback if API fails or returns empty
   const displayStats = stats?.data || {
     totalUsers: 120,
@@ -26,7 +26,7 @@ async function AdminDashboard() {
         <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent italic">
           Admin Dashboard
         </h1>
-        <p className="text-muted-foreground italic">Welcome back, here&#39;s what&#39;s happening today.</p>
+        <p className="text-muted-foreground italic">Welcome back Admin Dashboard, here&#39;s what&#39;s happening today.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -51,7 +51,7 @@ async function AdminDashboard() {
           <p className="text-xl font-semibold">Activity Overview</p>
           <p className="text-sm text-muted-foreground">Visualization coming soon...</p>
         </GlassCard>
-        
+
         <GlassCard className="h-80 flex flex-col">
           <h2 className="text-xl font-semibold mb-4">Recent Notifications</h2>
           <div className="space-y-4 overflow-y-auto pr-2">

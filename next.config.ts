@@ -3,8 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      "p16-capcut-va.ibyteimg.com", // Existing domain
-      "avatars.githubusercontent.com", // Added domain for GitHub avatars
+      "p16-capcut-va.ibyteimg.com",
+      "avatars.githubusercontent.com",
+      "i.ibb.co.com",
     ],
   },
 };

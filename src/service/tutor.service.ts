@@ -76,8 +76,8 @@ export const TutorService = {
   updateProfile: async (data: TutorProfileUpdate) => {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/all/data/tutor`, {
-        method: "PATCH",
+      const res = await fetch(`${API_URL}/create/tutor-profile`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           cookie: cookieStore.toString(),
@@ -115,6 +115,21 @@ export const TutorService = {
       return res.json();
     } catch (error) {
       console.error("Error fetching single tutor:", error);
+      throw error;
+    }
+  },
+
+  getTutorNames: async () => {
+    try {
+      const res = await fetch(`${API_URL}/public/tutors`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return res.json();
+    } catch (error) {
+      console.error("Error fetching tutor names:", error);
       throw error;
     }
   },
