@@ -1,7 +1,7 @@
 import { env } from "@/env";
 import { cookies } from "next/headers";
 
-const API_URL = "http://localhost:5000/api/v1";
+const API_URL = `${env.BACKEND_URL}/api/v1`;
 
 export const CategoryService = {
   createCategory: async (name: string) => {

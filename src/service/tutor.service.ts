@@ -2,7 +2,7 @@ import { env } from "@/env";
 import { cookies } from "next/headers";
 
 
-const API_URL = "http://localhost:5000/api/v1";
+const API_URL = `${env.BACKEND_URL}/api/v1`;
 
 export interface TutorProfileUpdate {
   name?: string;
@@ -91,11 +91,22 @@ export const TutorService = {
     }
   },
 
-  filterTutors: async (categoryId?: string, maxPrice?: number) => {
+  filterTutors: async (params: {
+    searchTerm?: string;
+    categoryId?: string;
+    minPrice?: number;
+    maxPrice?: number;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+  }) => {
     try {
       const query = new URLSearchParams();
-      if (categoryId) query.append("categoryId", categoryId);
-      if (maxPrice) query.append("maxPrice", maxPrice.toString());
+      if (params.searchTerm) query.append("searchTerm", params.searchTerm);
+      if (params.categoryId) query.append("categoryId", params.categoryId);
+      if (params.minPrice !== undefined) query.append("minPrice", params.minPrice.toString());
+      if (params.maxPrice !== undefined) query.append("maxPrice", params.maxPrice.toString());
+      if (params.sortBy) query.append("sortBy", params.sortBy);
+      if (params.sortOrder) query.append("sortOrder", params.sortOrder);
 
       const res = await fetch(`${API_URL}/tutor/filter?${query.toString()}`, {
         cache: "no-store",

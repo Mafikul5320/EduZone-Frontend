@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { AdminService } from "@/service/admin.service";
 import UserList from "@/components/modules/admin/user/UserList";
 

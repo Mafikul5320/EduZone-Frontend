@@ -1,4 +1,17 @@
-// types/dashboard.ts
+export interface StudentBooking {
+  id: string;
+  tutorId: string;
+  date: string;
+  slot: string;
+  status: "CONFIRMED" | "PENDING" | "CANCELLED" | "PAID";
+  totalPrice: number;
+  tutor: {
+    user: { name: string };
+    subjects: string[];
+    rating: number;
+  };
+}
+
 export interface StudentDashboardData {
   id: string;
   name: string;
@@ -10,16 +23,5 @@ export interface StudentDashboardData {
     bookings: number;
     reviews: number;
   };
-  bookings: {
-    id: string;
-    date: string;
-    slot: string;
-    status: "CONFIRMED" | "PENDING" | "CANCELLED";
-    totalPrice: number;
-    tutor: {
-      user: { name: string };
-      subjects: string[];
-      rating: number;
-    };
-  }[];
+  bookings: StudentBooking[];
 }

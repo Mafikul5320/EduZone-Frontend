@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { BookingService } from "@/service/booking.service";
 import GlassCard from "@/components/ui/GlassCard";
 import { Calendar, User, Clock, DollarSign, Bookmark } from "lucide-react";

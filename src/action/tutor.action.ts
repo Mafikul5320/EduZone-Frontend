@@ -65,3 +65,19 @@ export const getAllTutorProfilesAction = async () => {
     return { success: false, message: "An error occurred while fetching all tutor profiles" };
   }
 };
+
+export const filterTutorsAction = async (params: {
+  searchTerm?: string;
+  categoryId?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+}) => {
+  try {
+    const res = await TutorService.filterTutors(params);
+    return res;
+  } catch (error) {
+    return { success: false, message: "An error occurred while filtering tutors" };
+  }
+};

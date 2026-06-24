@@ -28,12 +28,13 @@ function LoginFrom() {
                 const { data, error } = await authClient.signIn.email(value);
                 if (data) {
                     toast.success("Login sucessfull", { id: tostId });
-                     window.location.href = "/";
+                    window.location.href = "/";
                 };
                 if (error) {
                     toast.error(error.message, { id: tostId })
                 }
             } catch (error) {
+                console.log(error)
                 toast.error("Internal server error", { id: tostId })
             }
 
@@ -131,7 +132,7 @@ function LoginFrom() {
                         <div className="mb-4 h-64 w-64 rounded-full bg-indigo-200/20 backdrop-blur-md flex items-center justify-center">
 
                             <img
-                                src="/api/placeholder/400/400"
+                                src=""
                                 alt="Illustration"
                                 className="h-full w-full object-contain"
                             />

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { UserService } from "@/service/user.service";
 import StudentProfileForm from "@/components/modules/student/profile/StudentProfileForm";
 import GlassCard from "@/components/ui/GlassCard";

@@ -1,84 +1,82 @@
 import React from 'react';
-import { GraduationCap, Paintbrush } from 'lucide-react';
+import { GraduationCap } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="w-full  ">
-      {/* Main Glass Container */}
-      <div className=" bg-[#0B0F1A]/80 backdrop-blur-2xl border border-white/10  p-8 md:p-12 shadow-2xl relative overflow-hidden">
+    <footer className="w-full">
+      {/* Main Container */}
+      <div className="bg-[#0B0F1A] border-t border-teal-500/10 p-8 md:p-16 relative overflow-hidden">
 
-        {/* Background Glows (Optional for that extra pop) */}
-        <div className="absolute top-0 -left-20 w-64 h-64 bg-teal-500/10 blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 -right-20 w-64 h-64 bg-purple-500/10 blur-[100px] pointer-events-none" />
+        {/* Background Glows */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-teal-500/5 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/5 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-teal-500/10 to-transparent" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10 max-w-7xl mx-auto">
 
           {/* 1. Branding Section */}
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <div className="bg-gradient-to-br from-teal-400 to-purple-500 p-2 rounded-xl">
-                <GraduationCap className="text-white w-7 h-7" />
+            <div className="flex items-center gap-3">
+              <div className="bg-gradient-to-br from-teal-400 to-indigo-500 p-2.5 rounded-xl shadow-lg shadow-teal-500/20">
+                <GraduationCap className="text-white w-6 h-6" />
               </div>
-              <span className="text-2xl font-bold text-white tracking-tight">
-                Edu<span className="text-[#B794F4]">Link</span>
+              <span className="text-3xl font-black text-white tracking-tight">
+                Edu<span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Zone</span>
               </span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed leading-7">
-              Unlock world-class mentorship. <br />
-              Find the perfect guide for your <br />
-              learning journey.
+            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+              Unlock world-class mentorship. Find the perfect guide for your learning journey and achieve your goals faster.
             </p>
-            {/* <div className="flex gap-4">
-              {[Facebook, Github, Instagram, Paintbrush].map((Icon, index) => (
-                <a 
-                  key={index} 
-                  href="#" 
-                  className="w-10 h-10 flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 hover:text-teal-400 hover:border-teal-400/50 transition-all duration-300"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div> */}
           </div>
 
           {/* 2. Platform Links */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Platform</h4>
-            <ul className="space-y-4 text-sm text-slate-400">
-              <li><a href="#" className="hover:text-teal-400 transition-colors">Home</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition-colors">Browse Tutors</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-teal-400 transition-colors">Contact</a></li>
+            <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+              Platform
+            </h4>
+            <ul className="space-y-3.5 text-sm text-slate-400">
+              <li><a href="#" className="hover:text-teal-400 hover:translate-x-1 inline-block transition-all duration-300">Home</a></li>
+              <li><a href="#" className="hover:text-teal-400 hover:translate-x-1 inline-block transition-all duration-300">Browse Tutors</a></li>
+              <li><a href="#" className="hover:text-teal-400 hover:translate-x-1 inline-block transition-all duration-300">Success Stories</a></li>
+              <li><a href="#" className="hover:text-teal-400 hover:translate-x-1 inline-block transition-all duration-300">Contact Us</a></li>
             </ul>
           </div>
 
           {/* 3. Support Links */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Support</h4>
-            <ul className="space-y-4 text-sm text-slate-400">
-              <li><a href="#" className="hover:text-[#B794F4] transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-[#B794F4] transition-colors">Support</a></li>
-              <li><a href="#" className="hover:text-[#B794F4] transition-colors">Legal</a></li>
-              <li><a href="#" className="hover:text-[#B794F4] transition-colors">Privacy policy</a></li>
+            <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+              Support
+            </h4>
+            <ul className="space-y-3.5 text-sm text-slate-400">
+              <li><a href="#" className="hover:text-indigo-400 hover:translate-x-1 inline-block transition-all duration-300">About</a></li>
+              <li><a href="#" className="hover:text-indigo-400 hover:translate-x-1 inline-block transition-all duration-300">Help Center</a></li>
+              <li><a href="#" className="hover:text-indigo-400 hover:translate-x-1 inline-block transition-all duration-300">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-indigo-400 hover:translate-x-1 inline-block transition-all duration-300">Privacy Policy</a></li>
             </ul>
           </div>
 
           {/* 4. Newsletter Section */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6">Newsletter</h4>
+            <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+              Newsletter
+            </h4>
+            <p className="text-sm text-slate-400 mb-4">Stay updated with the latest learning resources.</p>
             <div className="relative group">
               <input
                 type="email"
-                placeholder="Enter your email..."
-                className="w-full bg-white/5 border border-white/10 rounded-full py-4 px-6 text-sm text-white focus:outline-none focus:border-teal-400/50 transition-all placeholder:text-slate-500"
+                placeholder="Enter your email"
+                className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 pl-4 pr-24 text-sm text-white focus:outline-none focus:border-teal-400/50 transition-all placeholder:text-slate-500"
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-teal-400 to-teal-500 hover:from-teal-300 hover:to-teal-400 text-slate-900 font-bold py-2 px-6 rounded-full text-xs transition-all shadow-[0_0_20px_rgba(45,212,191,0.3)] hover:shadow-teal-400/40">
-                Send
+              <button className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-gradient-to-r from-teal-500 to-indigo-500 hover:from-teal-400 hover:to-indigo-400 text-white font-bold py-2 px-5 rounded-lg text-xs transition-all shadow-lg hover:shadow-teal-500/25 active:scale-95">
+                Subscribe
               </button>
             </div>
-            <div className="mt-8 flex items-center justify-between text-[10px] text-slate-500 uppercase tracking-widest">
-              <span>Midnight Slate, Lavender, and Teal</span>
-              <span>Clean State</span>
+            <div className="mt-8 flex items-center justify-between border-t border-white/5 pt-6 text-[11px] text-slate-500 uppercase tracking-widest font-semibold">
+              <span>© {new Date().getFullYear()} EduLink</span>
+              <span>All rights reserved</span>
             </div>
           </div>
         </div>

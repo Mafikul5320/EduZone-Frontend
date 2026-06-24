@@ -167,7 +167,7 @@ function RegisterForm() {
                     <div className="relative z-10 flex h-full flex-col items-center justify-center text-white">
                         <div className="mb-4 h-64 w-64 rounded-full bg-indigo-200/20 backdrop-blur-md flex items-center justify-center">
                             <img
-                                src="/api/placeholder/400/400"
+                                src=""
                                 alt="Illustration"
                                 className="h-full w-full object-contain"
                             />

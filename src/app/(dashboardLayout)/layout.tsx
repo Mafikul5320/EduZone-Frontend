@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { AppSidebar } from "@/components/app-sidebar"
 import {
     Breadcrumb,
@@ -15,32 +16,44 @@ import {
 } from "@/components/ui/sidebar"
 import { userRole } from "@/constant/role.type"
 import { UserService } from "@/service/user.service"
+import { redirect } from "next/navigation"
 import React from "react"
 
 export default async function Page({
-
-    children,
     admin,
     student,
     tutor
-
 }: {
     children: React.ReactNode
     admin: React.ReactNode
     student: React.ReactNode
     tutor: React.ReactNode
-
 }) {
     const data = await UserService.getSession();
-    const userInfo = data?.user
-    console.log(data?.user)
-    const role = data?.user.role
-    const renderDashboard = () => {
-        if (role === userRole.ADMIN) return admin
-        if (role === userRole.TUTOR) return tutor
-        if (role === userRole.STUDENT) return student
-        return null
+    
+    // If no session, redirect to login
+    if (!data || !data.user) {
+        redirect("/login");
     }
+
+    const userInfo = data.user;
+    const role = data.user?.role;
+
+    // If no role, redirect to unauthorized
+    if (!role) {
+        redirect("/unauthorized");
+    }
+
+    console.log("User Info:", userInfo);
+    console.log("User Role:", role);
+
+    const renderDashboard = () => {
+        if (role === userRole.ADMIN) return admin;
+        if (role === userRole.TUTOR) return tutor;
+        if (role === userRole.STUDENT) return student;
+        return <div className="p-6">Access Denied</div>;
+    };
+
     return (
         <SidebarProvider>
             <AppSidebar user={userInfo} />
@@ -66,5 +79,5 @@ export default async function Page({
                 <div className="py-4">{renderDashboard()}</div>
             </SidebarInset>
         </SidebarProvider>
-    )
+    );
 }

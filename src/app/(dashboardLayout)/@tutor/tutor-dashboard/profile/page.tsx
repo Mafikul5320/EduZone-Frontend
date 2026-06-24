@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { CategoryService } from "@/service/category.service";
 import TutorProfileForm from "@/components/modules/tutor/profile/TutorProfileForm";
 import { UserService } from "@/service/user.service";

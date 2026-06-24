@@ -1,24 +1,15 @@
 import { env } from "@/env";
 import { cookies } from "next/headers"
+import { getSessionFromCookie } from "@/lib/session";
 
 
 const AUTH_URL = env.AUTH_URL;
-const API_URL = "http://localhost:5000/api/v1";
+const API_URL = `${env.BACKEND_URL}/api/v1`;
 
 export const UserService = {
     getSession: async function () {
-        try {
-            const cookieStore = await cookies();
-            const res = await fetch(`${AUTH_URL}/get-session`, {
-                headers: {
-                    cookie: cookieStore.toString()
-                },
-                cache: "no-store"
-            })
-            return res.json()
-        } catch (error) {
-            console.log(error)
-        }
+        // Use the helper function to get session from cookie
+        return await getSessionFromCookie();
     },
     updateStudentProfile: async function (data: { name?: string; image?: string }) {
         try {

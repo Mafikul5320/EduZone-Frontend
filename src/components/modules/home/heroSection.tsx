@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { getAllTutorProfilesAction } from "@/action/tutor.action";
-
+import { Search, ArrowRight, CheckCircle, Star, Users } from "lucide-react";
 
 const Hero = () => {
-  const [allTutors, setAllTutors] = useState(null);
+  const [allTutors, setAllTutors] = useState<{ data: unknown } | null>(null);
 
   useEffect(() => {
     const fetchTutors = async () => {
@@ -21,92 +21,116 @@ const Hero = () => {
     fetchTutors();
   }, []);
 
-  console.log(allTutors?.data);
-
   return (
-    <section className="bg-[#F4F7FC] text-gray-800">
-      {/* Hero Section Content */}
-      <div className="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#f8fafc] via-[#f0fdfa] to-[#eef2ff] text-slate-800 min-h-[90vh] flex items-center">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-teal-200/40 rounded-full blur-3xl" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-200/40 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-6 py-16 md:py-24 flex flex-col lg:flex-row items-center gap-16 relative z-10">
+        
         {/* Left Side: Text and Search */}
-        <div className="md:w-1/2 flex flex-col gap-6 animate-in fade-in slide-in-from-left duration-700">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1A237E] leading-tight">
-            Find Your Perfect Tutor or Online Course - Now on <span className="text-[#009688]">EduLink.</span>
+        <div className="lg:w-1/2 flex flex-col gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-150 fill-mode-both">
+          <div className="inline-block px-4 py-2 bg-teal-50 border border-teal-100 rounded-full text-teal-700 font-medium text-sm w-max shadow-sm">
+            🚀 The #1 Platform for Online Learning
+          </div>
+          
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-900 leading-[1.15] tracking-tight">
+            Find Your Perfect <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-500">Tutor</span> or Course
           </h1>
-          <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
-            Connect directly with experienced and verified tutors. Start your learning journey today with personalized guidance.
+          
+          <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
+            Connect directly with experienced and verified tutors. Start your learning journey today with personalized guidance and achieve your goals faster.
           </p>
 
           {/* Search Bar */}
-          <div className="bg-white p-2 rounded-full shadow-lg flex items-center border border-gray-100 mt-6 max-w-lg group transition-all focus-within:ring-2 focus-within:ring-[#009688]/20">
-            <span className="px-4 text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+          <div className="bg-white/80 backdrop-blur-md p-2 rounded-2xl shadow-xl shadow-indigo-100/50 flex items-center border border-white mt-4 max-w-xl group transition-all duration-300 focus-within:ring-4 focus-within:ring-teal-500/20 focus-within:bg-white focus-within:border-teal-200">
+            <span className="pl-4 pr-2 text-slate-400 group-focus-within:text-teal-500 transition-colors">
+              <Search className="w-6 h-6" />
             </span>
             <input
               type="text"
               placeholder="Search by subject, area or course..."
-              className="flex-grow p-3 text-lg focus:outline-none bg-transparent"
+              className="flex-grow p-3 text-lg focus:outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
             />
-            <button className="bg-[#009688] text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-[#009688]/90 transition-all">
+            <button className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-8 py-3.5 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-teal-500/30 hover:-translate-y-0.5 transition-all duration-300">
               Search
             </button>
           </div>
 
-          <div className="flex items-center gap-4 mt-8">
-            <button className="bg-[#00897b] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#00796b] transition-all flex items-center gap-2 shadow-md hover:shadow-lg active:scale-95">
-              Get Started - Book Free Demo
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+          <div className="flex flex-wrap items-center gap-6 mt-4">
+            <button className="bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-800 transition-all duration-300 flex items-center gap-2 shadow-xl shadow-slate-900/20 hover:-translate-y-0.5 group">
+              Book Free Demo
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
+            
+            <div className="flex items-center gap-3">
+               <div className="flex -space-x-3">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="h-10 w-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden relative shadow-sm">
+                    <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt={`Student ${i}`} fill className="object-cover" />
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col text-sm">
+                <div className="flex text-amber-400">
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                  <Star className="w-4 h-4 fill-current" />
+                </div>
+                <span className="font-medium text-slate-700">4.9/5 from 2k+ reviews</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Right Side: Image and Floating Cards */}
-        <div className="md:w-1/2 relative flex justify-center items-center animate-in fade-in zoom-in duration-1000">
-          <div className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px]">
+        <div className="lg:w-1/2 relative flex justify-center items-center animate-in fade-in zoom-in-95 duration-1000 delay-300 fill-mode-both mt-12 lg:mt-0">
+          <div className="relative w-[340px] h-[400px] md:w-[460px] md:h-[540px]">
+            {/* Background Blob/Shape */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-teal-400 to-indigo-500 rounded-[3rem] rotate-3 opacity-20 blur-lg" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-teal-400 to-indigo-500 rounded-[3rem] -rotate-3 transition-transform duration-500 hover:rotate-0" />
+            
             {/* Main Tutor Image */}
-            <div className="relative w-full h-full overflow-hidden rounded-[30px] border-4 border-white shadow-[0_0_50px_rgba(0,150,136,0.3)]">
+            <div className="relative w-full h-full overflow-hidden rounded-[3rem] border-8 border-white/50 backdrop-blur-sm shadow-2xl z-10">
               <Image
-                src="https://i.ibb.co.com/k6cK4DMT/home-tutor-m-jpg.webp" // Put your image in public/tutor-image.jpg
+                src="https://i.ibb.co.com/k6cK4DMT/home-tutor-m-jpg.webp"
                 alt="Experienced Tutor"
                 fill
-                className="object-cover"
+                className="object-cover hover:scale-105 transition-transform duration-700"
                 priority
               />
             </div>
 
-            {/* Floating Glass Card 1 */}
-            <div className="absolute -top-10 -left-10 bg-white/70 backdrop-blur-md p-4 rounded-[20px] border border-white/30 shadow-xl flex items-center gap-4 animate-bounce duration-[3000ms]">
-              <span className="text-3xl">👨‍🏫</span>
+            {/* Floating Glass Card 1 - Top Left */}
+            <div className="absolute -top-6 -left-8 md:-left-16 bg-white/90 backdrop-blur-xl p-4 rounded-2xl border border-white shadow-2xl flex items-center gap-4 z-20 animate-bounce" style={{ animationDuration: '3s' }}>
+              <div className="bg-indigo-100 p-3 rounded-xl">
+                <Users className="w-6 h-6 text-indigo-600" />
+              </div>
               <div>
-                <p className="font-semibold text-[#1A237E]">Math Tutor</p>
-                <p className="text-yellow-500 text-xl">★★★★★</p>
+                <p className="font-bold text-slate-900 text-lg">50k+</p>
+                <p className="text-slate-500 text-sm font-medium">Active Students</p>
               </div>
             </div>
 
-            {/* Floating Glass Card 2 */}
-            <div className="absolute top-1/2 -right-16 transform -translate-y-1/2 bg-white/70 backdrop-blur-md p-4 rounded-[20px] border border-white/30 shadow-xl flex flex-col gap-2 animate-pulse">
-              <p className="font-semibold text-[#1A237E]">Science Course</p>
-              <p className="text-yellow-500 text-xl">★★★★★</p>
-              <div className="flex -space-x-3 mt-1">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-9 w-9 rounded-full border-2 border-white overflow-hidden relative">
-                    {/* <Image src={`https://i.pravatar.cc/40?u=${i}`} alt="user" fill /> */}
-                  </div>
-                ))}
+            {/* Floating Glass Card 2 - Right Middle */}
+            <div className="absolute top-1/2 -right-8 md:-right-16 transform -translate-y-1/2 bg-white/90 backdrop-blur-xl p-5 rounded-2xl border border-white shadow-2xl flex flex-col gap-2 z-20 animate-pulse" style={{ animationDuration: '4s' }}>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="bg-teal-100 p-2 rounded-lg">
+                  <Star className="w-5 h-5 text-teal-600 fill-current" />
+                </div>
+                <p className="font-bold text-slate-900">Top Rated</p>
               </div>
+              <p className="text-slate-500 text-sm font-medium">Expert Tutors Available</p>
             </div>
 
-            {/* Floating Glass Card 3 */}
-            <div className="absolute -bottom-8 left-10 bg-white/70 backdrop-blur-md p-3 rounded-[20px] border border-white/30 shadow-xl flex items-center gap-2 animate-bounce">
-              <span className="text-blue-600 bg-blue-100 p-2 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </span>
-              <p className="font-semibold text-[#1A237E]">Verified</p>
+            {/* Floating Glass Card 3 - Bottom Left */}
+            <div className="absolute -bottom-6 left-4 md:-left-8 bg-white/90 backdrop-blur-xl px-5 py-4 rounded-2xl border border-white shadow-2xl flex items-center gap-3 z-20 animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
+              <CheckCircle className="w-6 h-6 text-emerald-500" />
+              <p className="font-bold text-slate-800">Verified Profiles</p>
             </div>
           </div>
         </div>

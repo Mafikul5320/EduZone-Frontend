@@ -17,8 +17,10 @@ import { submitReviewAction } from "@/action/admin.action";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+import { StudentBooking } from "@/types/student.type";
+
 interface BookingListProps {
-  bookings: any[];
+  bookings: StudentBooking[];
 }
 
 export default function BookingList({ bookings }: BookingListProps) {
@@ -28,7 +30,7 @@ export default function BookingList({ bookings }: BookingListProps) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleReviewSubmit = async (booking: any) => {
+  const handleReviewSubmit = async (booking: StudentBooking) => {
     if (!comment.trim()) {
       toast.error("Please enter a comment");
       return;

@@ -8,49 +8,53 @@ const steps = [
     title: "Register",
     description: "Create your account in seconds and set your learning goals.",
     step: "01",
-    glow: "rgba(245,158,11,0.25)",
-    accent: "from-amber-500/20 to-orange-500/10",
+    glow: "rgba(20,184,166,0.3)", // teal
+    accent: "from-teal-500/20 to-emerald-500/10",
   },
   {
     icon: Search,
     title: "Search",
     description: "Browse tutors by subject, rating, availability, and price.",
     step: "02",
-    glow: "rgba(16,185,129,0.25)",
-    accent: "from-emerald-500/20 to-teal-500/10",
+    glow: "rgba(99,102,241,0.3)", // indigo
+    accent: "from-indigo-500/20 to-blue-500/10",
   },
   {
     icon: BookOpen,
     title: "Learn",
     description: "Join live sessions, access resources, and track your progress.",
     step: "03",
-    glow: "rgba(14,165,233,0.25)",
-    accent: "from-sky-500/20 to-blue-500/10",
+    glow: "rgba(236,72,153,0.3)", // pink
+    accent: "from-pink-500/20 to-rose-500/10",
   },
   {
     icon: Star,
     title: "Review",
     description: "Rate your experience and help our community grow stronger.",
     step: "04",
-    glow: "rgba(139,92,246,0.25)",
-    accent: "from-violet-500/20 to-purple-500/10",
+    glow: "rgba(245,158,11,0.3)", // amber
+    accent: "from-amber-500/20 to-orange-500/10",
   },
 ];
 
 const HowItWorks = () => (
   <section
     id="how-it-works"
-    className="relative py-28 border-t border-border/50 overflow-hidden"
+    className="relative py-28 border-t border-slate-100 overflow-hidden bg-white"
   >
     {/* Subtle background grid */}
     <div
-      className="pointer-events-none absolute inset-0 opacity-[0.03]"
+      className="pointer-events-none absolute inset-0 opacity-[0.02]"
       style={{
         backgroundImage:
           "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
         backgroundSize: "60px 60px",
       }}
     />
+    {/* Background glow blobs */}
+    <div className="absolute top-1/4 left-0 w-96 h-96 bg-teal-100/50 rounded-full blur-[100px] pointer-events-none -translate-x-1/2" />
+    <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-100/50 rounded-full blur-[100px] pointer-events-none translate-x-1/2" />
+
 
     <div className="container mx-auto px-6 relative z-10">
 
@@ -60,55 +64,55 @@ const HowItWorks = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center mb-20"
+        className="text-center mb-24"
       >
-        <span className="inline-block text-[11px] font-semibold tracking-[0.22em] uppercase text-muted-foreground mb-4 px-4 py-1.5 rounded-full border border-border/60 bg-muted/40">
+        <span className="inline-block px-4 py-1.5 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-700 font-semibold text-xs uppercase tracking-widest mb-6">
           Simple Process
         </span>
 
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 leading-tight">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mt-2 leading-tight tracking-tight">
           How It{" "}
-          <span className="text-gradient-gold relative inline-block">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-indigo-600 relative inline-block">
             Works
             {/* Decorative underline */}
             <svg
-              className="absolute -bottom-2 left-0 w-full"
+              className="absolute -bottom-3 left-0 w-full"
               viewBox="0 0 200 8"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 d="M2 6 C50 2, 150 2, 198 6"
-                stroke="url(#gold-line)"
-                strokeWidth="2.5"
+                stroke="url(#teal-line)"
+                strokeWidth="3"
                 strokeLinecap="round"
               />
               <defs>
-                <linearGradient id="gold-line" x1="0" y1="0" x2="200" y2="0">
-                  <stop offset="0%" stopColor="#C9943A" stopOpacity="0" />
-                  <stop offset="40%" stopColor="#C9943A" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#C9943A" stopOpacity="0.3" />
+                <linearGradient id="teal-line" x1="0" y1="0" x2="200" y2="0">
+                  <stop offset="0%" stopColor="#14b8a6" stopOpacity="0" />
+                  <stop offset="40%" stopColor="#14b8a6" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.3" />
                 </linearGradient>
               </defs>
             </svg>
           </span>
         </h2>
 
-        <p className="text-muted-foreground mt-6 max-w-md mx-auto text-base leading-relaxed">
-          Four simple steps to transform your learning journey.
+        <p className="text-slate-500 mt-8 max-w-lg mx-auto text-lg leading-relaxed">
+          Four simple steps to transform your learning journey. Get started in minutes.
         </p>
       </motion.div>
 
       {/* ── Zigzag Timeline ── */}
-      <div className="relative max-w-3xl mx-auto">
+      <div className="relative max-w-4xl mx-auto">
 
         {/* Dashed vertical line */}
         <div
           className="absolute left-6 md:left-1/2 top-0 bottom-0 md:-translate-x-px"
           style={{
-            width: 1,
+            width: 2,
             background:
-              "repeating-linear-gradient(to bottom, hsl(var(--border)) 0px, hsl(var(--border)) 6px, transparent 6px, transparent 14px)",
+              "repeating-linear-gradient(to bottom, #e2e8f0 0px, #e2e8f0 8px, transparent 8px, transparent 16px)",
           }}
         />
 
@@ -122,7 +126,7 @@ const HowItWorks = () => (
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className={`relative flex items-center mb-14 last:mb-0 ${
+              className={`relative flex items-center mb-16 last:mb-0 ${
                 isLeft ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
@@ -130,15 +134,15 @@ const HowItWorks = () => (
               {/* ── Desktop Content Card (alternating side) ── */}
               <div
                 className={`flex-1 hidden md:flex ${
-                  isLeft ? "justify-end pr-10" : "justify-start pl-10"
+                  isLeft ? "justify-end pr-12" : "justify-start pl-12"
                 }`}
               >
                 <motion.div
-                  whileHover={{ y: -4, scale: 1.02 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="group relative max-w-[230px] rounded-2xl border border-border/60 bg-background/80 backdrop-blur-sm p-5 cursor-default overflow-hidden"
+                  className="group relative w-[280px] rounded-3xl border border-slate-100 bg-white p-6 cursor-default overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
                   style={{
-                    boxShadow: `0 0 0 1px hsl(var(--border)/0.4), 0 8px 32px -8px ${step.glow}`,
+                    boxShadow: `0 4px 20px -8px ${step.glow}`,
                   }}
                 >
                   {/* Hover gradient overlay */}
@@ -147,15 +151,15 @@ const HowItWorks = () => (
                   />
                   <div className="relative z-10">
                     <span
-                      className="block font-mono text-[11px] font-bold tracking-[0.2em] mb-2"
-                      style={{ color: "#C9943A" }}
+                      className="block font-bold text-sm tracking-widest mb-3"
+                      style={{ color: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb') }}
                     >
-                      {step.step}
+                      STEP {step.step}
                     </span>
-                    <h3 className="text-[15px] font-bold text-foreground mb-1.5 leading-snug">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2 leading-snug group-hover:text-slate-800">
                       {step.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-slate-500 leading-relaxed group-hover:text-slate-700">
                       {step.description}
                     </p>
                   </div>
@@ -163,25 +167,23 @@ const HowItWorks = () => (
               </div>
 
               {/* ── Center Icon Node ── */}
-              <div className="relative z-10 shrink-0">
+              <div className="relative z-20 shrink-0">
                 <motion.div
-                  whileHover={{ scale: 1.12 }}
+                  whileHover={{ scale: 1.15 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  className="relative w-14 h-14 rounded-full bg-background flex items-center justify-center"
+                  className="relative w-16 h-16 rounded-full bg-white flex items-center justify-center border-[3px] border-white"
                   style={{
-                    border: "1.5px solid hsl(var(--border))",
-                    boxShadow: `0 0 0 5px hsl(var(--background)), 0 0 28px ${step.glow}`,
+                    boxShadow: `0 0 0 1px #e2e8f0, 0 8px 30px ${step.glow}`,
                   }}
                 >
-                  <Icon className="h-5 w-5 text-primary" />
+                  <Icon className="h-6 w-6" style={{ color: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb') }} />
 
                   {/* Gold number badge */}
                   <div
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white font-bold"
+                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white font-bold shadow-md"
                     style={{
-                      fontSize: 9,
-                      background: "linear-gradient(135deg,#C9943A,#E8B86D)",
-                      boxShadow: "0 2px 8px rgba(201,148,58,0.5)",
+                      fontSize: 11,
+                      background: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb'),
                     }}
                   >
                     {i + 1}
@@ -190,35 +192,35 @@ const HowItWorks = () => (
               </div>
 
               {/* ── Mobile card + Desktop opposite-side label ── */}
-              <div className={`flex-1 ${isLeft ? "pl-6 md:pl-10" : "pr-6 md:pr-10"}`}>
+              <div className={`flex-1 ${isLeft ? "pl-8 md:pl-12" : "pr-8 md:pr-12"}`}>
 
                 {/* Mobile */}
                 <div className="md:hidden">
                   <span
-                    className="block font-mono text-[10px] font-bold tracking-[0.2em] mb-1.5"
-                    style={{ color: "#C9943A" }}
+                    className="block font-bold text-[11px] tracking-widest mb-1.5"
+                    style={{ color: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb') }}
                   >
-                    {step.step}
+                    STEP {step.step}
                   </span>
-                  <h3 className="text-base font-bold text-foreground mb-1">
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-slate-500 leading-relaxed">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Desktop label on opposite side */}
                 <div
-                  className={`hidden md:flex items-center gap-2 ${
+                  className={`hidden md:flex items-center gap-4 ${
                     isLeft ? "" : "justify-end"
                   }`}
                 >
-                  {!isLeft && <div className="h-px w-8 bg-border/40" />}
-                  <span className="text-[10px] font-mono font-semibold tracking-[0.2em] text-muted-foreground/40 uppercase">
+                  {!isLeft && <div className="h-[2px] w-12 bg-slate-100" />}
+                  <span className="text-xs font-bold tracking-[0.2em] text-slate-300 uppercase">
                     Step {step.step}
                   </span>
-                  {isLeft && <div className="h-px w-8 bg-border/40" />}
+                  {isLeft && <div className="h-[2px] w-12 bg-slate-100" />}
                 </div>
               </div>
 

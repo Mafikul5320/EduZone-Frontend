@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import GlassCard from "@/components/ui/GlassCard";
 import { Star, User, Quote } from "lucide-react";
 

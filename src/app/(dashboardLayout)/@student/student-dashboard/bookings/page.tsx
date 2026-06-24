@@ -1,4 +1,5 @@
 import { BookingService } from "@/service/booking.service";
+export const dynamic = "force-dynamic";
 import BookingList from "@/components/modules/student/booking/BookingList";
 
 async function StudentBookingsPage() {
