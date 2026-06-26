@@ -46,12 +46,12 @@ function LoginFrom() {
             <div className="flex w-full flex-col justify-center bg-white px-8 py-12 md:w-1/2 lg:px-24">
                 <div className="mb-8 flex items-center gap-2">
                     <div className="grid grid-cols-2 gap-1">
-                        <div className="h-3 w-3 rounded-sm bg-indigo-600"></div>
-                        <div className="h-3 w-3 rounded-sm bg-indigo-400" />
-                        <div className="h-3 w-3 rounded-sm bg-indigo-300"></div>
-                        <div className="h-3 w-3 rounded-sm bg-indigo-500"></div>
+                        <div className="h-3 w-3 rounded-sm bg-primary"></div>
+                        <div className="h-3 w-3 rounded-sm bg-secondary" />
+                        <div className="h-3 w-3 rounded-sm bg-primary/50"></div>
+                        <div className="h-3 w-3 rounded-sm bg-secondary/50"></div>
                     </div>
-                    <span className="text-xl font-bold tracking-tight text-slate-900">TheCubeFactory</span>
+                    <span className="text-xl font-bold tracking-tight text-slate-900">EduZone</span>
                 </div>
 
                 <div className="mx-auto w-full max-w-md">
@@ -67,7 +67,7 @@ function LoginFrom() {
                                 !field.state.meta.isValid
                             return (
                                 <Field>
-                                    <FieldLabel>Email address</FieldLabel>
+                                    <FieldLabel className="text-black/80">Email address</FieldLabel>
                                     <Input className="py-5" value={field.state.value}
                                         placeholder="Enter your email"
                                         type="email"
@@ -85,7 +85,7 @@ function LoginFrom() {
                                     !field.state.meta.isValid
                                 return (
                                     <Field>
-                                        <FieldLabel>Password</FieldLabel>
+                                        <FieldLabel className="text-black/80">Password</FieldLabel>
                                         <Input type="password" value={field.state.value}
                                             className="py-5"
                                             placeholder="••••••••"
@@ -97,13 +97,13 @@ function LoginFrom() {
                         </form.Field>
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                                <input type="checkbox" id="remember" className="h-4 w-4 rounded border-slate-300 text-indigo-600" />
+                                <input type="checkbox" id="remember" className="h-4 w-4 rounded border-slate-300 text-primary" />
                                 <label htmlFor="remember" className="text-sm text-slate-600">Remember for 30 days</label>
                             </div>
-                            <a href="#" className="text-sm font-medium text-indigo-600 hover:underline">Forgot password</a>
+                            <a href="#" className="text-sm font-medium text-primary hover:underline">Forgot password</a>
                         </div>
 
-                        <button className="w-full rounded-md bg-indigo-600 py-2.5 font-semibold text-white transition-all hover:bg-indigo-700">
+                        <button className="w-full rounded-md bg-gradient-to-r from-primary to-secondary py-2.5 font-semibold text-primary-foreground transition-all hover:scale-[1.02]">
                             Sign in
                         </button>
 
@@ -113,34 +113,25 @@ function LoginFrom() {
                     </form>
 
                     <p className="mt-8 text-center text-sm text-slate-500">
-                        Dont have an account?
-                        <a href="/signup" className="font-semibold text-indigo-600 hover:underline">Sign up</a>
+                        Dont have an account? 
+                        <a href="/signup" className="font-semibold text-primary hover:underline ml-1">Sign up</a>
                     </p>
                 </div>
             </div>
 
             {/* Right Side: Illustration Area */}
-            <div className="hidden w-1/2 flex-col items-center justify-center bg-[#9e7fcc] p-12 md:flex">
-                <div className="relative h-full w-full max-w-lg">
+            <div className="hidden w-1/2 flex-col items-center justify-center bg-[#0B1120] p-12 md:flex relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[60%] h-[80%] bg-primary/20 rounded-bl-[100px] pointer-events-none blur-3xl" />
+                <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[100px] pointer-events-none" />
 
-                    <div className="absolute inset-0 opacity-20">
-
+                <div className="relative h-full w-full max-w-lg z-10 flex flex-col items-center justify-center text-white">
+                    <div className="mb-4 h-64 w-64 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center shadow-2xl">
+                         <span className="text-6xl">🎓</span>
                     </div>
-
-
-                    <div className="relative z-10 flex h-full flex-col items-center justify-center text-white">
-                        <div className="mb-4 h-64 w-64 rounded-full bg-indigo-200/20 backdrop-blur-md flex items-center justify-center">
-
-                            <img
-                                src=""
-                                alt="Illustration"
-                                className="h-full w-full object-contain"
-                            />
-                        </div>
-                        <p className="text-center text-lg font-light italic">
-                            Simplify your workflow with our smart cube factory tools
-                        </p>
-                    </div>
+                    <h2 className="text-3xl font-black mb-4">Empower Your Learning</h2>
+                    <p className="text-center text-lg font-light italic text-muted-foreground">
+                        Connect with expert tutors globally and achieve your goals with EduZone.
+                    </p>
                 </div>
             </div>
         </div>

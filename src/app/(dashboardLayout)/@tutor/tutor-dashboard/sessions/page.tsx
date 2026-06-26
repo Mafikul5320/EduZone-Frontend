@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const dynamic = "force-dynamic";
 import { BookingService } from "@/service/booking.service";
 import GlassCard from "@/components/ui/GlassCard";

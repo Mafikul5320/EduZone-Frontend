@@ -10,8 +10,7 @@ async function TutorProfilePage() {
   const session = await UserService.getSession();
   const user = session?.user;
 
-  // In a real scenario, we would fetch the tutor profile by user ID
-  // For now, we'll pass the user data as initial values
+
   const initialData = {
     user: {
       name: user?.name || "Tutor Name",

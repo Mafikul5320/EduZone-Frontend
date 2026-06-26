@@ -7,8 +7,8 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  role: string;
-  status: string;
+  role?: string;
+  status?: string;
   image?: string;
 }
 
@@ -21,7 +21,16 @@ export function useSession() {
       try {
         const session = await authClient.getSession();
         if (session?.data?.user) {
-          setUser(session.data.user as User);
+          const userData = session.data.user;
+          
+          setUser({
+            id: userData.id,
+            name: userData.name || '',
+            email: userData.email,
+            role: (userData as any).role,
+            status: (userData as any).status,
+            image: userData.image || undefined
+          });
         }
       } catch (error) {
         console.error("Failed to fetch session:", error);

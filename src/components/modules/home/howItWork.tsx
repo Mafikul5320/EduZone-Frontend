@@ -8,43 +8,43 @@ const steps = [
     title: "Register",
     description: "Create your account in seconds and set your learning goals.",
     step: "01",
-    glow: "rgba(20,184,166,0.3)", // teal
-    accent: "from-teal-500/20 to-emerald-500/10",
+    glow: "hsl(var(--primary))",
+    accent: "from-primary/20 to-primary/5",
   },
   {
     icon: Search,
     title: "Search",
     description: "Browse tutors by subject, rating, availability, and price.",
     step: "02",
-    glow: "rgba(99,102,241,0.3)", // indigo
-    accent: "from-indigo-500/20 to-blue-500/10",
+    glow: "hsl(var(--secondary))",
+    accent: "from-secondary/20 to-secondary/5",
   },
   {
     icon: BookOpen,
     title: "Learn",
     description: "Join live sessions, access resources, and track your progress.",
     step: "03",
-    glow: "rgba(236,72,153,0.3)", // pink
-    accent: "from-pink-500/20 to-rose-500/10",
+    glow: "hsl(var(--primary))",
+    accent: "from-primary/20 to-primary/5",
   },
   {
     icon: Star,
     title: "Review",
     description: "Rate your experience and help our community grow stronger.",
     step: "04",
-    glow: "rgba(245,158,11,0.3)", // amber
-    accent: "from-amber-500/20 to-orange-500/10",
+    glow: "hsl(var(--secondary))",
+    accent: "from-secondary/20 to-secondary/5",
   },
 ];
 
 const HowItWorks = () => (
   <section
     id="how-it-works"
-    className="relative py-28 border-t border-slate-100 overflow-hidden bg-white"
+    className="relative py-28 border-t border-border overflow-hidden bg-background"
   >
     {/* Subtle background grid */}
     <div
-      className="pointer-events-none absolute inset-0 opacity-[0.02]"
+      className="pointer-events-none absolute inset-0 opacity-5"
       style={{
         backgroundImage:
           "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
@@ -52,8 +52,8 @@ const HowItWorks = () => (
       }}
     />
     {/* Background glow blobs */}
-    <div className="absolute top-1/4 left-0 w-96 h-96 bg-teal-100/50 rounded-full blur-[100px] pointer-events-none -translate-x-1/2" />
-    <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-100/50 rounded-full blur-[100px] pointer-events-none translate-x-1/2" />
+    <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/2" />
+    <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] pointer-events-none translate-x-1/2" />
 
 
     <div className="container mx-auto px-6 relative z-10">
@@ -66,39 +66,18 @@ const HowItWorks = () => (
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         className="text-center mb-24"
       >
-        <span className="inline-block px-4 py-1.5 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-700 font-semibold text-xs uppercase tracking-widest mb-6">
+        <span className="inline-block px-4 py-1.5 bg-secondary/20 border border-primary/20 rounded-full text-primary font-semibold text-xs uppercase tracking-widest mb-6 backdrop-blur-md">
           Simple Process
         </span>
 
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mt-2 leading-tight tracking-tight">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mt-2 leading-tight tracking-tight">
           How It{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-indigo-600 relative inline-block">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 relative inline-block">
             Works
-            {/* Decorative underline */}
-            <svg
-              className="absolute -bottom-3 left-0 w-full"
-              viewBox="0 0 200 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 6 C50 2, 150 2, 198 6"
-                stroke="url(#teal-line)"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-              <defs>
-                <linearGradient id="teal-line" x1="0" y1="0" x2="200" y2="0">
-                  <stop offset="0%" stopColor="#14b8a6" stopOpacity="0" />
-                  <stop offset="40%" stopColor="#14b8a6" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.3" />
-                </linearGradient>
-              </defs>
-            </svg>
           </span>
         </h2>
 
-        <p className="text-slate-500 mt-8 max-w-lg mx-auto text-lg leading-relaxed">
+        <p className="text-muted-foreground mt-8 max-w-lg mx-auto text-lg leading-relaxed">
           Four simple steps to transform your learning journey. Get started in minutes.
         </p>
       </motion.div>
@@ -112,7 +91,7 @@ const HowItWorks = () => (
           style={{
             width: 2,
             background:
-              "repeating-linear-gradient(to bottom, #e2e8f0 0px, #e2e8f0 8px, transparent 8px, transparent 16px)",
+              "repeating-linear-gradient(to bottom, var(--border) 0px, var(--border) 8px, transparent 8px, transparent 16px)",
           }}
         />
 
@@ -140,10 +119,7 @@ const HowItWorks = () => (
                 <motion.div
                   whileHover={{ y: -5, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="group relative w-[280px] rounded-3xl border border-slate-100 bg-white p-6 cursor-default overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
-                  style={{
-                    boxShadow: `0 4px 20px -8px ${step.glow}`,
-                  }}
+                  className="group relative w-[280px] rounded-3xl border border-border glass p-6 cursor-default overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500"
                 >
                   {/* Hover gradient overlay */}
                   <div
@@ -151,15 +127,14 @@ const HowItWorks = () => (
                   />
                   <div className="relative z-10">
                     <span
-                      className="block font-bold text-sm tracking-widest mb-3"
-                      style={{ color: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb') }}
+                      className="block font-bold text-sm tracking-widest mb-3 text-primary"
                     >
                       STEP {step.step}
                     </span>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 leading-snug group-hover:text-slate-800">
+                    <h3 className="text-xl font-bold text-foreground mb-2 leading-snug">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-slate-500 leading-relaxed group-hover:text-slate-700">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -171,19 +146,15 @@ const HowItWorks = () => (
                 <motion.div
                   whileHover={{ scale: 1.15 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  className="relative w-16 h-16 rounded-full bg-white flex items-center justify-center border-[3px] border-white"
-                  style={{
-                    boxShadow: `0 0 0 1px #e2e8f0, 0 8px 30px ${step.glow}`,
-                  }}
+                  className="relative w-16 h-16 rounded-full bg-background flex items-center justify-center border-[3px] border-border"
                 >
-                  <Icon className="h-6 w-6" style={{ color: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb') }} />
+                  <Icon className="h-6 w-6 text-primary" />
 
                   {/* Gold number badge */}
                   <div
-                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-white font-bold shadow-md"
+                    className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-primary-foreground font-bold shadow-md bg-primary"
                     style={{
                       fontSize: 11,
-                      background: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb'),
                     }}
                   >
                     {i + 1}
@@ -197,15 +168,14 @@ const HowItWorks = () => (
                 {/* Mobile */}
                 <div className="md:hidden">
                   <span
-                    className="block font-bold text-[11px] tracking-widest mb-1.5"
-                    style={{ color: step.glow.replace(/,[\d.]+\)/, ', 1)').replace('rgba', 'rgb') }}
+                    className="block font-bold text-[11px] tracking-widest mb-1.5 text-primary"
                   >
                     STEP {step.step}
                   </span>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  <h3 className="text-lg font-bold text-foreground mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -216,11 +186,11 @@ const HowItWorks = () => (
                     isLeft ? "" : "justify-end"
                   }`}
                 >
-                  {!isLeft && <div className="h-[2px] w-12 bg-slate-100" />}
-                  <span className="text-xs font-bold tracking-[0.2em] text-slate-300 uppercase">
+                  {!isLeft && <div className="h-[2px] w-12 bg-border" />}
+                  <span className="text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
                     Step {step.step}
                   </span>
-                  {isLeft && <div className="h-[2px] w-12 bg-slate-100" />}
+                  {isLeft && <div className="h-[2px] w-12 bg-border" />}
                 </div>
               </div>
 

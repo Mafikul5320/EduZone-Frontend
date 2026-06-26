@@ -59,7 +59,7 @@ export const TutorService = {
   getAllTutors: async () => {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${API_URL}/all/data/tutor`, {
+      const res = await fetch(`${API_URL}/public/tutors`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -76,6 +76,24 @@ export const TutorService = {
   updateProfile: async (data: TutorProfileUpdate) => {
     try {
       const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/all/data/tutor`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          cookie: cookieStore.toString(),
+        },
+        body: JSON.stringify(data),
+      });
+      return res.json();
+    } catch (error) {
+      console.error("Error updating tutor profile:", error);
+      throw error;
+    }
+  },
+
+  createProfile: async (data: TutorProfileUpdate) => {
+    try {
+      const cookieStore = await cookies();
       const res = await fetch(`${API_URL}/create/tutor-profile`, {
         method: "POST",
         headers: {
@@ -86,7 +104,24 @@ export const TutorService = {
       });
       return res.json();
     } catch (error) {
-      console.error("Error updating tutor profile:", error);
+      console.error("Error creating tutor profile:", error);
+      throw error;
+    }
+  },
+
+  getDashboardData: async () => {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/all/data/tutor`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          cookie: cookieStore.toString(),
+        },
+      });
+      return res.json();
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
       throw error;
     }
   },
@@ -120,7 +155,7 @@ export const TutorService = {
 
   getSingleTutor: async (id: string) => {
     try {
-      const res = await fetch(`${API_URL}/tutosr/${id}`, {
+      const res = await fetch(`${API_URL}/tutor/${id}`, {
         cache: "no-store",
       });
       return res.json();

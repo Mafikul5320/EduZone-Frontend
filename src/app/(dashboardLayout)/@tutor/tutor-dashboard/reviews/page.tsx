@@ -1,25 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const dynamic = "force-dynamic";
 import GlassCard from "@/components/ui/GlassCard";
 import { Star, User, Quote } from "lucide-react";
+import { TutorService } from "@/service/tutor.service";
+import Image from "next/image";
 
 async function TutorReviewsPage() {
-  // Mock reviews for UI demonstration
-  const reviews = [
-    {
-      id: "1",
-      student: "Alice Johnson",
-      rating: 5,
-      comment: "Exceptional teaching! Explained complex calculus concepts with such ease. Highly recommended.",
-      date: "2026-04-20"
-    },
-    {
-      id: "2",
-      student: "Bob Smith",
-      rating: 4,
-      comment: "Great session on Data Structures. Very patient and knowledgeable.",
-      date: "2026-04-18"
+  let reviews: any[] = [];
+
+  try {
+    const tutorData = await TutorService.getAllTutors();
+    const tutor = tutorData?.data;
+   
+    if (tutor?.tutorProfile?.id) {
+      const singleTutor = await TutorService.getSingleTutor(tutor.tutorProfile.id);
+      reviews = singleTutor?.data?.reviews || [];
     }
-  ];
+  } catch (e) {
+    reviews = [];
+  }
 
   return (
     <div className="p-6 space-y-8 max-w-5xl mx-auto">
@@ -30,8 +29,25 @@ async function TutorReviewsPage() {
         <p className="text-muted-foreground italic">See what your students are saying about your teaching.</p>
       </div>
 
+      {/* Stats Summary */}
+      {reviews.length > 0 && (
+        <div className="flex items-center gap-6 bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+          <div className="flex items-center gap-2">
+            <Star className="fill-amber-400 text-amber-400" size={24} />
+            <span className="text-3xl font-black text-white">
+              {(reviews.reduce((acc: number, r: any) => acc + r.rating, 0) / reviews.length).toFixed(1)}
+            </span>
+          </div>
+          <div className="h-8 w-px bg-white/10" />
+          <div>
+            <p className="text-sm font-bold text-white">{reviews.length} Reviews</p>
+            <p className="text-xs text-muted-foreground italic">from verified students</p>
+          </div>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 gap-6">
-        {reviews.map((review) => (
+        {reviews.map((review: any) => (
           <GlassCard key={review.id} className="relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                <Quote size={80} />
@@ -39,10 +55,16 @@ async function TutorReviewsPage() {
             
             <div className="flex flex-col md:flex-row md:items-start gap-6">
                <div className="flex flex-col items-center gap-2">
-                  <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                    <User size={32} className="text-muted-foreground" />
+                  <div className="w-16 h-16 rounded-full overflow-hidden border border-white/10">
+                    {review.student?.image ? (
+                      <Image src={review.student.image} alt={review.student.name || "Student"} width={64} height={64} className="object-cover w-full h-full" />
+                    ) : (
+                      <div className="w-full h-full bg-white/5 flex items-center justify-center">
+                        <User size={32} className="text-muted-foreground" />
+                      </div>
+                    )}
                   </div>
-                  <p className="font-bold text-sm whitespace-nowrap">{review.student}</p>
+                  <p className="font-bold text-sm whitespace-nowrap">{review.student?.name || "Student"}</p>
                </div>
 
                <div className="flex-1 space-y-4">
@@ -54,11 +76,13 @@ async function TutorReviewsPage() {
                         className={i < review.rating ? "text-amber-400 fill-amber-400" : "text-white/10"} 
                       />
                     ))}
-                    <span className="ml-2 text-xs text-muted-foreground italic">{new Date(review.date).toLocaleDateString()}</span>
+                    <span className="ml-2 text-xs text-muted-foreground italic">
+                      {new Date(review.createdAt).toLocaleDateString()}
+                    </span>
                   </div>
                   
                   <p className="text-lg italic text-white/90 leading-relaxed">
-                    "{review.comment}"
+                    &quot;{review.comment}&quot;
                   </p>
                </div>
             </div>
@@ -67,7 +91,8 @@ async function TutorReviewsPage() {
         {reviews.length === 0 && (
           <div className="py-20 text-center border-2 border-dashed border-white/5 rounded-3xl">
              <Star size={48} className="mx-auto mb-4 opacity-10" />
-             <p className="text-muted-foreground italic">You haven't received any reviews yet.</p>
+             <p className="text-muted-foreground italic">You haven&apos;t received any reviews yet.</p>
+             <p className="text-sm text-muted-foreground italic mt-2">Reviews from your students will appear here after sessions.</p>
           </div>
         )}
       </div>

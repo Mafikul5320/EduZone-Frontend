@@ -28,6 +28,24 @@ export const ReviewService = {
       throw error;
     }
   },
+
+  getMyReviews: async () => {
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${API_URL}/student/my-reviews`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          cookie: cookieStore.toString(),
+        },
+        cache: "no-store",
+      });
+      return res.json();
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      throw error;
+    }
+  },
 };
 
 export const AdminService = {

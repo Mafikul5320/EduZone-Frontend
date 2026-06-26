@@ -3,10 +3,11 @@
 import { TutorService, TutorProfileUpdate, AvailabilitySlot } from "@/service/tutor.service";
 import { revalidatePath } from "next/cache";
 
-export const convertToTutorAction = async (data: TutorProfileUpdate) => {
+export const createTutorProfileAction = async (data: TutorProfileUpdate) => {
   try {
-    const res = await TutorService.convertToTutor(data);
+    const res = await TutorService.createProfile(data);
     if (res?.success) {
+      revalidatePath("/tutor-dashboard");
       revalidatePath("/tutor-dashboard/profile");
     }
     return res;
@@ -24,6 +25,15 @@ export const updateTutorProfileAction = async (data: TutorProfileUpdate) => {
     return res;
   } catch (error) {
     return { success: false, message: "An error occurred" };
+  }
+};
+
+export const getDashboardDataAction = async () => {
+  try {
+    const res = await TutorService.getDashboardData();
+    return res;
+  } catch (error) {
+    return { success: false, message: "An error occurred while fetching dashboard data" };
   }
 };
 
@@ -79,5 +89,14 @@ export const filterTutorsAction = async (params: {
     return res;
   } catch (error) {
     return { success: false, message: "An error occurred while filtering tutors" };
+  }
+};
+
+export const getSingleTutorAction = async (id: string) => {
+  try {
+    const res = await TutorService.getSingleTutor(id);
+    return res;
+  } catch (error) {
+    return { success: false, message: "An error occurred while fetching tutor details" };
   }
 };

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState } from "react";
 import { Save, User, DollarSign, BookOpen, FileText, Loader2, Plus, X } from "lucide-react";
 import Image from "next/image";
 import GlassCard from "@/components/ui/GlassCard";
-import { convertToTutorAction, updateTutorProfileAction } from "@/action/tutor.action";
+import {  updateTutorProfileAction } from "@/action/tutor.action";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 

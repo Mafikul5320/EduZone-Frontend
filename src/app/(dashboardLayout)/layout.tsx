@@ -18,6 +18,8 @@ import { userRole } from "@/constant/role.type"
 import { UserService } from "@/service/user.service"
 import { redirect } from "next/navigation"
 import React from "react"
+import { GraduationCap } from "lucide-react";
+import Link from "next/link";
 
 export default async function Page({
     admin,
@@ -31,7 +33,6 @@ export default async function Page({
 }) {
     const data = await UserService.getSession();
     
-    // If no session, redirect to login
     if (!data || !data.user) {
         redirect("/login");
     }
@@ -39,13 +40,9 @@ export default async function Page({
     const userInfo = data.user;
     const role = data.user?.role;
 
-    // If no role, redirect to unauthorized
     if (!role) {
         redirect("/unauthorized");
     }
-
-    console.log("User Info:", userInfo);
-    console.log("User Role:", role);
 
     const renderDashboard = () => {
         if (role === userRole.ADMIN) return admin;
@@ -57,26 +54,30 @@ export default async function Page({
     return (
         <SidebarProvider>
             <AppSidebar user={userInfo} />
-            <SidebarInset>
-                <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-                    <SidebarTrigger className="-ml-1" />
-                    <Separator
-                        orientation="vertical"
-                        className="mr-2 data-[orientation=vertical]:h-4"
-                    />
+            <SidebarInset className="bg-transparent">
+                <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-6 glass sticky top-0 z-10">
+                    <SidebarTrigger className="-ml-2 text-primary hover:text-secondary hover:bg-primary/10 transition-colors" />
+                    <Separator orientation="vertical" className="mr-2 h-6 bg-border/50" />
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem>
-                                <BreadcrumbLink href="/" className="italic">EduZone</BreadcrumbLink>
+                                <BreadcrumbLink asChild>
+                                   <Link href="/" className="flex items-center gap-2 hover:text-primary transition-colors font-medium">
+                                      <GraduationCap size={16} />
+                                      EduZone
+                                   </Link>
+                                </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
-                                <BreadcrumbPage className="font-bold italic">Dashboard</BreadcrumbPage>
+                                <BreadcrumbPage className="font-bold text-foreground">Dashboard</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
                 </header>
-                <div className="py-4">{renderDashboard()}</div>
+                <div className="p-6 md:p-8 max-w-[1600px] mx-auto w-full">
+                   {renderDashboard()}
+                </div>
             </SidebarInset>
         </SidebarProvider>
     );

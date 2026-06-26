@@ -20,9 +20,19 @@ export const submitReviewAction = async (data: ReviewData) => {
     const res = await ReviewService.submitReview(data);
     if (res?.success) {
       revalidatePath("/student-dashboard/bookings");
+      revalidatePath("/student-dashboard/reviews");
     }
     return res;
   } catch (error) {
     return { success: false, message: "An error occurred" };
+  }
+};
+
+export const getMyReviewsAction = async () => {
+  try {
+    const res = await ReviewService.getMyReviews();
+    return res;
+  } catch (error) {
+    return { success: false, message: "Failed to fetch reviews" };
   }
 };
